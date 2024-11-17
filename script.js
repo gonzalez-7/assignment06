@@ -28,3 +28,5 @@ function reliableMultiply(a, b) {
     }
   }
 }
+
+console.log(reliableMultiply(8, 8)); // outputs 64
