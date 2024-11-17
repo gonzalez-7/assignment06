@@ -17,16 +17,24 @@ function primitiveMultiply(a, b) {
 }
 
 function reliableMultiply(a, b) {
+  // Start an infinite loop to keep trying until the operation succeeds.
   while (true) {
     try {
+      // Attempt to multiply the two numbers using primitiveMultiply.
+      // If the operation succeeds, return the result and exit the loop.
       return primitiveMultiply(a, b);
     } catch (e) {
+      // If an exception is thrown, check the type of the exception.
       if (!(e instanceof MultiplicatorUnitFailure)) {
-        throw e; // Rethrow unexpected exceptions
+        // If the exception is not of type MultiplicatorUnitFailure,
+        // rethrow it to avoid handling unexpected errors.
+        throw e;
       }
-      // Retry if it's a MultiplicatorUnitFailure
+      // If the exception is of type MultiplicatorUnitFailure,
+      // do nothing and let the loop retry the operation.
     }
   }
 }
+
 
 console.log(reliableMultiply(8, 8)); // outputs 64
